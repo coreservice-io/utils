@@ -1,9 +1,3 @@
-# UUtils
-
-### common tools for golang 
-
-example
-```go
 package main
 
 import (
@@ -43,4 +37,3 @@ func main() {
 	log.Println(path_util.GetAbsPath("/subfolder/xxx.json"))
 	path_util.ExEPathPrintln()
 }
-```
