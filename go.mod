@@ -1,3 +1,3 @@
-module github.com/universe-30/UUtils
+module github.com/coreservice-io/UUtils
 
 go 1.17

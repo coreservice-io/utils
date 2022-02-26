@@ -9,11 +9,11 @@ package main
 import (
 	"log"
 
-	"github.com/universe-30/UUtils/bytes_util"
-	"github.com/universe-30/UUtils/hash_util"
-	"github.com/universe-30/UUtils/path_util"
-	"github.com/universe-30/UUtils/rand_util"
-	"github.com/universe-30/UUtils/time_util"
+	"github.com/coreservice-io/UUtils/bytes_util"
+	"github.com/coreservice-io/UUtils/hash_util"
+	"github.com/coreservice-io/UUtils/path_util"
+	"github.com/coreservice-io/UUtils/rand_util"
+	"github.com/coreservice-io/UUtils/time_util"
 )
 
 func main() {
