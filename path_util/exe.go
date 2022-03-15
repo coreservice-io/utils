@@ -1,7 +1,6 @@
 package path_util
 
 import (
-	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -10,25 +9,13 @@ import (
 
 var exePath string
 
-func ExEPathPrintln() {
-	fmt.Println("EXE abs path:", exePath)
+func ExE_PathStr() string {
+	return exePath
 }
 
 //return absolute path given relative path to the executable file folder
-func GetAbsPath(relpath string) string {
+func ExE_Path(relpath string) string {
 	return filepath.Join(exePath, relpath)
-}
-
-// exists returns whether the given file or directory exists, when err exist not sure
-func AbsPathExist(path string) (bool, error) {
-	_, err := os.Stat(path)
-	if err == nil {
-		return true, nil
-	}
-	if os.IsNotExist(err) {
-		return false, nil
-	}
-	return false, err
 }
 
 func init() {

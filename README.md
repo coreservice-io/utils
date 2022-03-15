@@ -39,8 +39,10 @@ func main() {
 	log.Println(hash_util.MD5Hash_StringArray([]string{}))
 
 	//path_util
-	log.Println(path_util.GetAbsPath("/subfolder/subsubfolder"))
-	log.Println(path_util.GetAbsPath("/subfolder/xxx.json"))
-	path_util.ExEPathPrintln()
+
+	//folder related to executable
+	log.Println(path_util.ExE_Path("/subfolder/subsubfolder"))
+	//folder releated to executable or working directory only if exist
+	log.Println(path_util.SmartExistPath("/subfolder/xxx.json"))
 }
 ```

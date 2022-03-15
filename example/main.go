@@ -5,7 +5,6 @@ import (
 
 	"github.com/coreservice-io/UUtils/bytes_util"
 	"github.com/coreservice-io/UUtils/hash_util"
-	"github.com/coreservice-io/UUtils/path_util"
 	"github.com/coreservice-io/UUtils/rand_util"
 	"github.com/coreservice-io/UUtils/time_util"
 )
@@ -32,8 +31,4 @@ func main() {
 	log.Println(hash_util.MD5Hash_StringArray([]string{"123", "1234"}))
 	log.Println(hash_util.MD5Hash_StringArray([]string{}))
 
-	//path_util
-	log.Println(path_util.GetAbsPath("/subfolder/subsubfolder"))
-	log.Println(path_util.GetAbsPath("/subfolder/xxx.json"))
-	path_util.ExEPathPrintln()
 }
