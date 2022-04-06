@@ -28,7 +28,13 @@ func main() {
 
 	//hash_util
 	log.Println(hash_util.MD5Hash([]byte("1234214")))
+	log.Println(hash_util.MD5Hash([]byte("1234214")))
 	log.Println(hash_util.MD5Hash_StringArray([]string{"123", "1234"}))
 	log.Println(hash_util.MD5Hash_StringArray([]string{}))
+
+	log.Println(hash_util.CRC32Hash([]byte("1234214")))
+	log.Println(hash_util.CRC32Hash([]byte("1234214")))
+	log.Println(hash_util.CRC32Hash([]byte("ffffffffffffffffffffffffffffffffffffffff")))
+	log.Println(hash_util.CRC32Hash([]byte("ffffffffffffffffffffffffffffffffffffffff")))
 
 }
