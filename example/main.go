@@ -24,7 +24,7 @@ func main() {
 	}
 
 	//rand_util
-	log.Println(rand_util.GenRandStr(80))
+	log.Println("randstr:" + rand_util.GenRandStr(80))
 
 	//hash_util
 	log.Println(hash_util.MD5Hash([]byte("1234214")))
