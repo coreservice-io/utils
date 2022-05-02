@@ -7,17 +7,29 @@ import (
 
 var md5hash = md5.New()
 
-func MD5Hash(input []byte) string {
+func MD5Hash(input []byte) []byte {
 	md5hash.Reset()
 	md5hash.Write(input)
-	return hex.EncodeToString(md5hash.Sum(nil))
+	return md5hash.Sum(nil)
+}
+
+func MD5HashString(input string) string {
+	return hex.EncodeToString(MD5Hash([]byte(input)))
 }
 
 //combine all string elements and hash
-func MD5Hash_StringArray(input []string) string {
-	var merge string
-	for i := 0; i < len(input); i++ {
-		merge = merge + input[i]
-	}
-	return MD5Hash([]byte(merge))
-}
+// func MD5HashArray(input [][]byte) []byte {
+// 	var merge []byte
+// 	for i := 0; i < len(input); i++ {
+// 		merge = append(merge, input[i]...)
+// 	}
+// 	return MD5Hash([]byte(merge))
+// }
+
+// func MD5HashArrayString(input []string) string {
+// 	var merge string
+// 	for i := 0; i < len(input); i++ {
+// 		merge = merge + "_" + input[i]
+// 	}
+// 	return MD5HashString(merge)
+// }

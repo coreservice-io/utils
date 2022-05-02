@@ -7,17 +7,17 @@ import (
 
 var crc32q = crc32.New(crc32.MakeTable(0xD5828281))
 
-func CRC32Hash(input []byte) string {
+func CRC32HashString(input string) string {
 	crc32q.Reset()
-	crc32q.Write(input)
+	crc32q.Write([]byte(input))
 	return fmt.Sprint(crc32q.Sum32())
 }
 
-//combine all string elements and hash
-func CRC32Hash_StringArray(input []string) string {
+// //combine all string elements and hash
+func CRC32HashArrayString(input []string) string {
 	var merge string
 	for i := 0; i < len(input); i++ {
-		merge = merge + input[i]
+		merge = merge + "_" + input[i]
 	}
-	return CRC32Hash([]byte(merge))
+	return CRC32HashString(merge)
 }
