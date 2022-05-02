@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	"github.com/coreservice-io/UUtils/bytes_util"
-	"github.com/coreservice-io/UUtils/hash_util"
-	"github.com/coreservice-io/UUtils/rand_util"
-	"github.com/coreservice-io/UUtils/time_util"
+	"github.com/coreservice-io/utils/bytes_util"
+	"github.com/coreservice-io/utils/hash_util"
+	"github.com/coreservice-io/utils/rand_util"
+	"github.com/coreservice-io/utils/time_util"
 )
 
 func main() {
