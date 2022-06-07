@@ -1,10 +1,8 @@
 package path_util
 
 import (
-	"errors"
 	"os"
 	"path/filepath"
-	//"github.com/labstack/echo/v4/middleware"
 )
 
 // exists returns whether the given file or directory exists, when err exist not sure
@@ -19,30 +17,51 @@ func AbsPathExist(path string) (bool, error) {
 	return false, err
 }
 
-// return a abs folder/file path ,
-// if no such file or folder then err is not nil
-func SmartExistPath(abs_or_rel_path string) (string, error) {
+// input a relative path or a absolute path
+// return (abs_path,exist,err)
+// if op-system file error then nothing meaningful
+func SmartPathExist(abs_or_rel_path string) (string, bool, error) {
 
-	//check if abs path exist
-	abs_exist, _ := AbsPathExist(abs_or_rel_path)
-	if abs_exist {
-		return abs_or_rel_path, nil
-	}
+	//check abs path or relative path
+	is_abs := filepath.IsAbs(abs_or_rel_path)
+	if is_abs {
+		//check if abs path exist
+		abs_exist, err := AbsPathExist(abs_or_rel_path)
+		if err != nil {
+			return "", false, err
+		}
+		if abs_exist {
+			return abs_or_rel_path, true, nil
+		} else {
+			return abs_or_rel_path, false, nil
+		}
+	} else {
 
-	exist, _ := AbsPathExist(ExE_Path(abs_or_rel_path))
-	if exist {
-		return ExE_Path(abs_or_rel_path), nil
-	}
+		//rel to exe
+		exist, err := AbsPathExist(ExE_Path(abs_or_rel_path))
+		if err != nil {
+			return "", false, err
+		}
+		if exist {
+			return ExE_Path(abs_or_rel_path), true, nil
+		}
 
-	//if user run from root as working directory
-	currDir, err := os.Getwd()
-	if err != nil {
-		return "", err
+		////////for debug mode direct run go run ./
+		/////////if user run from root as working directory
+		currDir, err := os.Getwd()
+		if err != nil {
+			return "", false, err
+		}
+
+		w_path := filepath.Join(currDir, abs_or_rel_path)
+		w_p_exist, err := AbsPathExist(w_path)
+		if err != nil {
+			return "", false, err
+		}
+		if w_p_exist {
+			return w_path, true, nil
+		}
+		//////////////////////////////////
+		return ExE_Path(abs_or_rel_path), false, nil
 	}
-	w_path := filepath.Join(currDir, abs_or_rel_path)
-	w_p_exist, _ := AbsPathExist(w_path)
-	if !w_p_exist {
-		return "", errors.New("path not exist")
-	}
-	return w_path, nil
 }
