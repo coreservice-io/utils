@@ -6,6 +6,9 @@ import (
 )
 
 func init() {
+	ResetSeed()
+}
+func ResetSeed() {
 	rand.Seed(time.Now().UnixNano())
 }
 
