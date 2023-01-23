@@ -1,12 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"log"
+	"time"
 
 	"github.com/coreservice-io/utils/bytes_util"
 	"github.com/coreservice-io/utils/hash_util"
 	"github.com/coreservice-io/utils/rand_util"
 	"github.com/coreservice-io/utils/time_util"
+	"github.com/coreservice-io/utils/token_util"
 )
 
 func main() {
@@ -37,5 +40,25 @@ func main() {
 	log.Println(hash_util.CRC32HashString("123123"))
 	log.Println(hash_util.CRC32HashArrayString([]string{"1", "2", "3", "1", "2", "3"}))
 	log.Println(hash_util.CRC32HashArrayString([]string{"1", "2", "3", "1", "2", "3"}))
+
+	//token util
+	time_now := time.Now().Unix()
+	tutil := token_util.NewTokenUtil("test salt")
+	fmt.Println("new token util pass secs:", time.Now().Unix()-time_now)
+	//
+	tutil.AppendWhiteListToken(map[string]interface{}{"token_w": struct{}{}})
+	//
+
+	log.Println("token_util instance:", tutil)
+	token1 := tutil.GenToken()
+	token2 := tutil.GenToken()
+
+	log.Println("check token1:", tutil.CheckToken(token1))
+	log.Println("check token2:", tutil.CheckToken(token2))
+	log.Println("check token_w:", tutil.CheckToken("token_w"))
+	log.Println("check token_err:", tutil.CheckToken("token_err"))
+
+	log.Println("get white list token:", tutil.GetWhiteListToken("token_w"))
+	log.Println("get white list token:", tutil.GetWhiteListToken("token_err"))
 
 }
