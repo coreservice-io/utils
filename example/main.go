@@ -52,11 +52,22 @@ func main() {
 	log.Println("token_util instance:", tutil)
 	token1 := tutil.GenToken()
 	token2 := tutil.GenToken()
+	token3 := tutil.GenSuperToken()
 
-	log.Println("check token1:", tutil.CheckToken(token1))
-	log.Println("check token2:", tutil.CheckToken(token2))
-	log.Println("check token_w:", tutil.CheckToken("token_w"))
-	log.Println("check token_err:", tutil.CheckToken("token_err"))
+	token1_, token1_s := tutil.CheckToken(token1)
+	log.Println("check token1 is token:", token1_, " is super token:", token1_s)
+
+	token2_, token2_s := tutil.CheckToken(token2)
+	log.Println("check token2 is token:", token2_, " is super token:", token2_s)
+
+	token3_, token3_s := tutil.CheckToken(token3)
+	log.Println("check token3 is token:", token3_, " is super token:", token3_s)
+
+	tokenw_, tokenw_s := tutil.CheckToken("token_w")
+	log.Println("check tokenw is token:", tokenw_, " is super token:", tokenw_s)
+
+	tokene_, tokene_s := tutil.CheckToken("token_err")
+	log.Println("check token_err is token:", tokene_, " is super token:", tokene_s)
 
 	log.Println("get white list token:", tutil.GetWhiteListToken("token_w"))
 	log.Println("get white list token:", tutil.GetWhiteListToken("token_err"))
