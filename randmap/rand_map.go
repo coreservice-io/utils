@@ -32,6 +32,10 @@ func NewRandMap() *RandMap {
 	}
 }
 
+func (s *RandMap) Count() int {
+	return s.counter
+}
+
 func (s *RandMap) Set(key any, item interface{}) {
 	s.m.Lock()
 	defer s.m.Unlock()
