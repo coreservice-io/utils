@@ -131,3 +131,14 @@ func (s *RandMap) PopRandom() interface{} {
 
 	return item.content
 }
+
+func (s *RandMap) Loop(callback func(key,value interface{}) bool) {
+	s.m.Lock()
+	defer s.m.Unlock()
+
+	for k,v:=range s.container{
+		if !callback(k,v){
+			return
+		}
+	}
+}
