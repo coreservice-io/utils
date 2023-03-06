@@ -137,7 +137,7 @@ func (s *RandMap) Loop(callback func(key,value interface{}) bool) {
 	defer s.m.Unlock()
 
 	for k,v:=range s.container{
-		if !callback(k,v){
+		if !callback(k,v.content){
 			return
 		}
 	}
