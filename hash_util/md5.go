@@ -5,10 +5,8 @@ import (
 	"encoding/hex"
 )
 
-var md5hash = md5.New()
-
 func MD5Hash(input []byte) []byte {
-	md5hash.Reset()
+	var md5hash = md5.New()
 	md5hash.Write(input)
 	return md5hash.Sum(nil)
 }

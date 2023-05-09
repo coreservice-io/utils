@@ -5,10 +5,8 @@ import (
 	"hash/crc32"
 )
 
-var crc32q = crc32.New(crc32.MakeTable(0xD5828281))
-
 func CRC32HashString(input string) string {
-	crc32q.Reset()
+	var crc32q = crc32.New(crc32.MakeTable(0xD5828281))
 	crc32q.Write([]byte(input))
 	return fmt.Sprint(crc32q.Sum32())
 }
